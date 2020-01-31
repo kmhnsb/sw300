@@ -33,8 +33,8 @@ public class Clazz implements Serializable {
 	@JoinColumns(value={ @JoinColumn(name="CourseId", referencedColumnName="Id", nullable=false) }, foreignKey=@ForeignKey(name="FKClazz743709"))	
 	private com.kosta.acme.course.Course course;
 	
-	@Column(name="Status", nullable=true, length=255)	
-	private String status;
+	@Enumerated (EnumType.STRING)
+	private ClazzStatus status;
 	
 	@Column(name="EvaluationRate", nullable=false, length=10)	
 	private float evaluationRate;
@@ -54,15 +54,15 @@ public class Clazz implements Serializable {
 	public long getORMID() {
 		return getId();
 	}
-	
-	public void setStatus(String value) {
-		this.status = value;
-	}
-	
-	public String getStatus() {
+
+	public ClazzStatus getStatus() {
 		return status;
 	}
-	
+
+	public void setStatus(ClazzStatus status) {
+		this.status = status;
+	}
+
 	public void setEvaluationRate(float value) {
 		this.evaluationRate = value;
 	}
