@@ -13,7 +13,10 @@
  */
 package com.kosta.acme.clazz;
 
+import com.kosta.acme.course.Course;
+
 import java.io.Serializable;
+import java.time.LocalDate;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
@@ -42,7 +45,12 @@ public class Clazz implements Serializable {
 	@OneToOne(mappedBy="clazz", targetEntity=com.kosta.acme.clazz.ClazzDay.class, fetch=FetchType.LAZY)	
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	private com.kosta.acme.clazz.ClazzDay clazzDay;
-	
+
+	public Clazz(Course course, ClazzStatus clazzStatus) {
+		setCourse(course);
+		setStatus(clazzStatus);
+	}
+
 	private void setId(long value) {
 		this.id = value;
 	}
@@ -90,5 +98,15 @@ public class Clazz implements Serializable {
 	public String toString() {
 		return String.valueOf(getId());
 	}
-	
+
+	public boolean isCanOpen() {
+		if(this.clazzDay == null)
+			return false;
+		else {
+			if(this.clazzDay.getDate().isBefore(LocalDate.now()))
+				return false;
+			else
+				return true;
+		}
+	}
 }
