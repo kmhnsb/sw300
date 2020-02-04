@@ -13,6 +13,8 @@
  */
 package com.kosta.acme.sme;
 
+import com.kosta.acme.clazz.ClazzDay;
+
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
@@ -114,7 +116,10 @@ public class Instructor implements Serializable {
 	public void setClazzDaies(java.util.Set value) {
 		this.clazzDaies = value;
 	}
-	
+	public void addClazzDay(ClazzDay clazzDay) {
+		if(clazzDay != null)
+			this.clazzDaies.add(clazzDay);
+	}
 	public java.util.Set getClazzDaies() {
 		return clazzDaies;
 	}
