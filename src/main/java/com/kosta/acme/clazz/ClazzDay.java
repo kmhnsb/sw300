@@ -15,13 +15,13 @@ package com.kosta.acme.clazz;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import javax.persistence.*;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="ClazzDay")
 public class ClazzDay implements Serializable {
-	public ClazzDay() {
-	}
 	
 	@Column(name="Id", nullable=false, length=19)	
 	@Id	
@@ -43,17 +43,17 @@ public class ClazzDay implements Serializable {
 	private int number;
 	
 	@Column(name="`Date`", nullable=true)	
-	@Temporal(TemporalType.DATE)	
+//	@Temporal(TemporalType.DATE)
 	private LocalDate date;
-	
+
 	@Column(name="StartTime", nullable=true)	
-	@Temporal(TemporalType.DATE)	
-	private java.util.Date startTime;
+//	@Temporal(TemporalType.DATE)
+	private LocalTime startTime;
 	
 	@Column(name="EndTime", nullable=true)	
-	@Temporal(TemporalType.DATE)	
-	private java.util.Date endTime;
-	
+//	@Temporal(TemporalType.DATE)
+	private LocalTime endTime;
+
 	@Column(name="InstructorPay", nullable=false, length=10)	
 	private int instructorPay;
 	
@@ -97,23 +97,23 @@ public class ClazzDay implements Serializable {
 	public LocalDate getDate() {
 		return date;
 	}
-	
-	public void setStartTime(java.util.Date value) {
-		this.startTime = value;
-	}
-	
-	public java.util.Date getStartTime() {
+
+	public LocalTime getStartTime() {
 		return startTime;
 	}
-	
-	public void setEndTime(java.util.Date value) {
-		this.endTime = value;
+
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
 	}
-	
-	public java.util.Date getEndTime() {
+
+	public LocalTime getEndTime() {
 		return endTime;
 	}
-	
+
+	public void setEndTime(LocalTime endTime) {
+		this.endTime = endTime;
+	}
+
 	public void setInstructorPay(int value) {
 		this.instructorPay = value;
 	}

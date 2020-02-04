@@ -21,8 +21,14 @@ import javax.persistence.*;
 public class Course implements Serializable {
 	public Course() {
 	}
-	
-	@Column(name="Id", nullable=false, length=19)	
+	public Course(String title, int duration, int maxEnrollment, int minEnrollment, float unitPrice) {
+		this.title = title;
+		this.duration = duration;
+		this.maxEnrollment = maxEnrollment;
+		this.minEnrollment = minEnrollment;
+		this.unitPrice = unitPrice;
+	}
+	@Column(name="Id", nullable=false, length=19)
 	@Id	
 	@GeneratedValue(generator="COM_KOSTA_ACME_COURSE_COURSE_ID_GENERATOR")	
 	@org.hibernate.annotations.GenericGenerator(name="COM_KOSTA_ACME_COURSE_COURSE_ID_GENERATOR", strategy="native")	
